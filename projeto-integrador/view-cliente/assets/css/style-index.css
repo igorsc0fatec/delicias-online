@@ -1,0 +1,384 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+h1,
+h2 {
+  margin: 0;
+  text-align: center;
+  font-family: 'Dancing Script', sans-serif;
+  font-size: 36px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+}
+
+#titulo {
+  width: 100%;
+  margin-top: 25px;
+}
+
+#logo a {
+  text-decoration: none;
+}
+
+/* Carousel Principal */
+.carousel {
+  width: 80%;
+  height: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.slides {
+  width: 300%;
+  /* Acomoda todos os slides */
+  height: 100%;
+  position: relative;
+  display: flex;
+  transition: transform 0.5s ease;
+  /* Suaviza a transição entre os slides */
+}
+
+.slide {
+  width: 33.333%;
+  /* Acomoda cada slide */
+  height: 100%;
+  position: relative;
+}
+
+.slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  /* Ajusta a imagem para cobrir todo o espaço do slide */
+}
+
+.navigation {
+  width: 100%;
+  height: 75px;
+  position: absolute;
+  bottom: 20px;
+  /* Posiciona a navegação na parte inferior */
+  left: 50%;
+  /* Ajusta a posição horizontalmente para o centro */
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.navigation label {
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.navigation label:hover {
+  background-color: #666;
+}
+
+#slide1:checked~.slides {
+  transform: translateX(0);
+  /* Move os slides para a esquerda */
+}
+
+#slide2:checked~.slides {
+  transform: translateX(-33.333%);
+  /* Move os slides para a esquerda */
+}
+
+#slide3:checked~.slides {
+  transform: translateX(-66.666%);
+  /* Move os slides para a esquerda */
+}
+
+.carousel input[type="radio"] {
+  display: none;
+}
+
+#slide1:checked~.navigation label[for="slide1"],
+#slide2:checked~.navigation label[for="slide2"],
+#slide3:checked~.navigation label[for="slide3"] {
+  background-color: rgb(0, 0, 0);
+}
+
+/* Carousel Secundário */
+.carousel-2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 1250px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 10px;
+  box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.add-to-cart {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #970C0A;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #c12e2c;
+}
+
+.add-to-cart i {
+  pointer-events: none;
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 1000px) {
+  .card {
+    width: 45%;
+  }
+
+  .add-to-cart {
+    bottom: 5px;
+    right: 5px;
+    padding: 8px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+
+  .add-to-cart {
+    bottom: 5px;
+    right: 5px;
+    padding: 8px;
+    font-size: 18px;
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-text {
+  background-color: #1D1C20;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.card-body {
+  font-size: 1.25rem;
+}
+
+.card-price {
+  background-color: #970C0A;
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+  .card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}
+
+#container_ajuda {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 1050px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#paragrafo1:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+#paragrafo2,
+#paragrafo3,
+#paragrafo4 {
+  display: none;
+}
+
+/*---CSS-Perfil ---*/
+.profile-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f1e1ff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  width: 900px;
+  margin: 20px auto;
+}
+
+.profile-banner img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-banner h1 {
+  font-size: 2em;
+  margin-bottom: 16px;
+}
+
+.profile-banner .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-banner .info div {
+  margin: 5px 0;
+}
+
+.profile-banner .info div i {
+  margin-right: 5px;
+}
+
+.profile-banner .info div span {
+  font-weight: bold;
+}
+
+.icon-whatsapp {
+  color: #25D366;
+}
+
+.icon-celular {
+  color: #4285F4;
+}
+
+.telefone-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  /* Espaçamento entre os itens */
+  justify-content: center;
+  /* Centraliza os itens horizontalmente */
+  align-items: center;
+  /* Alinha os itens verticalmente */
+}
+
+.telefone-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  /* Tamanho da fonte */
+  color: #333;
+  /* Cor do texto */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.telefone-item i {
+  margin-right: 8px;
+  /* Espaço entre o ícone e o texto */
+}
+
+@media (max-width: 900px) {
+  .profile-banner {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-banner {
+    padding: 10px;
+  }
+
+  .profile-banner h1 {
+    font-size: 1.5em;
+    margin-bottom: 12px;
+  }
+
+  .profile-banner img {
+    height: 120px;
+    width: 120px;
+  }
+
+  .profile-banner .info div {
+    margin: 4px 0;
+  }
+}
+
+.cart-counter {
+  position: absolute;
+  top: -10px;
+  right: 4px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0.15px 7px;
+  font-size: 14px;
+  text-align: center;
+}

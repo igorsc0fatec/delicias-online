@@ -1,0 +1,343 @@
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1, h2, h3, h4, h5, p, span {
+  margin: 0;
+  color: #666;
+}
+
+.container {
+  max-width: 1920px;
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-container .btn-menumobile {
+  display: none;
+}
+
+header {
+  position: relative;
+  top: 0;
+  height: auto;
+  width: 100%;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 75px;
+  width: 100%;
+  z-index: 1;
+  background-color: #8381ac;
+  border-bottom: 1px solid #7070c24d;
+}
+
+nav:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.nav-container {
+  max-width: 1200px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+  margin: 15px 0;
+}
+
+.nav-container ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.nav-container ul li {
+  margin: 0 15px;
+}
+
+.nav-container li a,
+.nav-container li form button {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-container li a:hover,
+.nav-container li form button:hover {
+  background-color: #726fa7;
+}
+
+.nav-container li form button {
+  color: #fff;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.nav-container li a:focus,
+.nav-container li form button:focus {
+  outline: none;
+}
+
+.nav-container li form button:focus {
+  color: #fff;
+}
+
+#logo a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: 'Dancing Script', sans-serif;
+}
+
+h2 {
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: 'Dancing Script', sans-serif;
+}
+
+.menu {
+  padding: 20px;
+  text-align: center;
+  background-color: #ea731d;
+  background-size: cover;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 1100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#paragrafo2,
+#paragrafo3,
+#paragrafo4 {
+  display: none;
+}
+
+#paragrafo1:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#container_ajuda {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 1050px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.corpo {
+  padding: 100px;
+}
+
+.ajuda {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: 1100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rodape {
+  text-align: center;
+  padding: 10px;
+  color: white;
+}
+
+#search-bar {
+  width: 80%;
+  padding: 10px;
+  margin: 20px auto;
+  display: block;
+}
+
+#featured-banner {
+  background-color: #f39c12;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+#categories {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #ecf0f1;
+}
+
+.category {
+  width: 30%;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.category:hover {
+  transform: scale(1.05);
+}
+
+#restaurants {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 20px;
+}
+
+.restaurant {
+  width: calc(35% - 100px);
+  margin: 20px 0;
+  padding: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+}
+
+.restaurant:hover {
+  transform: scale(1.25);
+}
+
+.restaurant img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.restaurant h3 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.restaurant p {
+  color: #555;
+  font-size: 12px;
+}
+
+#load-more-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#load-more-button:hover {
+  background-color: #0056b3;
+}
+
+.action-button {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+#minhaTabela {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+#minhaTabela th,
+#minhaTabela td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#minhaTabela th {
+  background-color: #f2f2f2;
+}
+
+#minhaTabela tr:hover {
+  background-color: #f5f5f5;
+}
+
+#minhaTabela td:last-child {
+  text-align: center;
+}
+
+#minhaTabela th:nth-last-child(-n+2),
+#minhaTabela td:nth-last-child(-n+2) {
+  width: 80px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  color: white;
+}

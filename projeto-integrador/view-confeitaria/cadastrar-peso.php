@@ -1,0 +1,267 @@
+<?php
+session_start();
+if (!isset($_SESSION['idConfeitaria'])) {
+    session_destroy();
+    echo "<script language='javascript' type='text/javascript'> window.location.href='login-confeitaria.php'</script>";
+} else if (isset($_SESSION['idTipoUsuario'])) {
+    if ($_SESSION['idTipoUsuario'] != 3) {
+        echo "<script language='javascript' type='text/javascript'> window.location.href='login-confeitaria.php'</script>";
+    }
+}
+
+include_once '../controller/controller-peso.php';
+$pesoController = new ControllerPeso();
+
+if (isset($_GET['action']) && $_GET['action'] == 'fetch_data') {
+    header('Content-Type: application/json');
+
+    if (isset($_POST['pesq']) && !empty($_POST['pesq'])) {
+        $pesos = $pesoController->pesquisaPeso();
+    } else {
+        $pesos = $pesoController->viewPeso();
+    }
+
+    echo json_encode($pesos);
+    exit;
+}
+
+if (isset($_GET['id'])) {
+    header('Content-Type: application/json');
+    echo json_encode($pesoController->deletePeso($_GET['id']));
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style-menu.css">
+    <link rel="stylesheet" href="assets/css/style-form-table.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicia online</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="nav-container">
+                    <a href="dashboard-confeitaria.php">
+                        <img id="logo" src="assets/img/logo.png" alt="JobFinder">
+                    </a>
+                    <i class="fas fa-bars btn-menumobile"></i>
+                    <ul>
+                        <li><a href="cadastrar-produto.php">Produtos</a></li>
+                        <li><a href="cadastrar-personalizado.php">Personalizados</a></li>
+                        <li><a href="regras-confeitaria.php">Regras</a></li>
+                        <li><a href="meus-produtos.php">Voltar </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div>
+        <br><br><br><br><br><br>
+    </div>
+
+    <div class="form-container">
+        <div class="form-image">
+            <img src="assets/img/logo.png" alt="">
+        </div>
+        <div class="form">
+            <form method="post">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Pesos</h1>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="peso">Peso</label>
+                        <input id="peso" type="number" name="peso" min=0.001 step="0.001" placeholder="Digite o peso:"
+                            required>
+                    </div>
+                </div>
+                <div class="continue-button">
+                    <button type="submit" id="submit" name="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <?php
+    if (isset($_POST['submit'])) {
+        if ($pesoController->verificaPeso()) {
+            echo "
+                <script>
+                    Swal.fire({
+                    title: 'Erro ao cadastrar o peso!',
+                    text: 'Peso já cadastrado na plataforma!',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                    });
+                </script>";
+        } else {
+            if ($pesoController->addPeso()) {
+                echo "
+                <script>
+                    Swal.fire({
+                    title: 'Peso cadastrado com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                    });
+                </script>";
+            }
+        }
+    }
+    ?>
+
+    <div>
+        <br><br>
+    </div>
+
+    <DIV>
+
+        <h2>Sua lista de Pesos</h2>
+
+        <form id="search-form" method="post">
+            <div class="pesquisa">
+                <label for="pesq">Buscar Peso</label>
+                <div class="input-wrapper">
+                    <input id="pesq" type="text" name="pesq" placeholder="Digite o valor do peso/ex: 1Kg" required>
+                    <button type="submit" name="pesquisa">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="tabela-scroll">
+            <table id="minhaTabela">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>Descrição</center>
+                        </th>
+                        <th>
+                            <center>Excluir</center>
+                        </th>
+                        <th>
+                            <center>Editar</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="pesos">
+                </tbody>
+            </table>
+        </div>
+    </DIV>
+
+    <footer class="rodape">
+        <p>© 2024 | Todos os direitos são de propriedade da FoxBitSystem</p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            function loadData(query = '') {
+                $.ajax({
+                    url: 'cadastrar-peso.php?action=fetch_data',
+                    type: 'POST',
+                    data: { pesq: query },
+                    dataType: 'json',
+                    success: function (data) {
+                        var tableBody = $('#pesos');
+                        tableBody.empty();
+                        if (data.length === 0) {
+                            tableBody.append('<tr><td colspan="3">Você não tem nenhum peso no momento</td></tr>');
+                        } else {
+                            data.forEach(function (peso) {
+                                var row = $('<tr></tr>');
+                                row.append('<td>' + peso.peso + '</td>');
+                                row.append('<td><button onclick="confirmarExclusao(' + peso.idPeso + ')">Excluir</button></td>');
+                                row.append('<td><button onclick="confirmarEdicao(' + peso.idPeso + ',\'' + peso.peso + '\')">Editar</button></td>');
+                                tableBody.append(row);
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('Erro: ' + textStatus + ' - ' + errorThrown);
+                    }
+                });
+            }
+
+            $('#search-form').on('submit', function (e) {
+                e.preventDefault();
+                var query = $('#pesq').val();
+                loadData(query);
+            });
+
+            loadData();
+        });
+
+        function confirmarExclusao(idPeso) {
+            Swal.fire({
+                title: 'Tem certeza que deseja excluir?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Não, cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'cadastrar-peso.php?id=' + idPeso,
+                        type: 'POST',
+                        data: { idPeso: idPeso },
+                        success: function (response) {
+                            Swal.fire(
+                                'Excluído!',
+                                'O Peso foi excluído.',
+                                'success',
+                            ).then(() => {
+                                window.location.href = 'cadastrar-peso.php';
+                            });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            Swal.fire(
+                                'Erro!',
+                                'Ocorreu um erro ao excluir o peso.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        }
+
+        function confirmarEdicao(idPeso, peso) {
+            Swal.fire({
+                title: 'Tem certeza que deseja editar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, editar!',
+                cancelButtonText: 'Não, cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const url = `editar-peso.php?id=${idPeso}&peso=${peso}`;
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
